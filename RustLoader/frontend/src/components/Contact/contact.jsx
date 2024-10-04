@@ -1,46 +1,9 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
-
-  const [responseMessage, setResponseMessage] = useState('');
-
-  // Handle input changes
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value, // Using the id of the input to map the formData keys
-    });
-  };
-
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch('/submit-contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-      setResponseMessage(result.message);
-    } catch (error) {
-      setResponseMessage('Error submitting the form. Please try again.');
-    }
-  };
-
+function contact() {
   return (
-    <div className="flex flex-col min-h-[100dvh]">
+    <div className="flex flex-col min-h-[100dvh">
       <main className="flex-1 mx-auto scale-90">
         <section className="bg-background py-12 md:py-24">
           <div className="container grid grid-cols-1 gap-12 md:grid-cols-2">
@@ -50,61 +13,66 @@ const Contact = () => {
                   Contact Us
                 </h1>
                 <p className="text-muted-foreground">
-                  Have a question or need to rent some equipment? Fill out the form and we'll get back to you as soon as possible.
+                  Have a question or need to rent some equipment? Fill out the
+                  form and we'll get back to you as soon as possible.
                 </p>
               </div>
-              <form className="space-y-4" onSubmit={handleSubmit}>
+              <form className="space-y-4">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Name
                     </label>
                     <input
                       id="name"
                       type="text"
                       placeholder="Devesh Tatkare"
-                      value={formData.name}
-                      onChange={handleChange}
                       className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Email
                     </label>
                     <input
                       id="email"
                       type="email"
                       placeholder="tatkaredevesh.com"
-                      value={formData.email}
-                      onChange={handleChange}
                       className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     Phone
                   </label>
                   <input
                     id="phone"
                     type="tel"
                     placeholder="91+ 989852508"
-                    value={formData.phone}
-                    onChange={handleChange}
                     className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700"
+                  >
                     Message
                   </label>
                   <textarea
                     id="message"
                     rows="5"
                     placeholder="How can we help you?"
-                    value={formData.message}
-                    onChange={handleChange}
                     className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   />
                 </div>
@@ -115,7 +83,6 @@ const Contact = () => {
                   Submit
                 </button>
               </form>
-              {responseMessage && <p>{responseMessage}</p>}
             </div>
             <div className="space-y-6">
               <div>
@@ -123,7 +90,8 @@ const Contact = () => {
                   Our Services
                 </h2>
                 <p className="text-muted-foreground">
-                  We offer a wide range of construction vehicles for rent, including:
+                  We offer a wide range of construction vehicles for rent,
+                  including:
                 </p>
               </div>
               <ul className="grid gap-4">
@@ -154,13 +122,15 @@ const Contact = () => {
                 </h2>
                 <div className="space-y-2 text-muted-foreground">
                   <p>
-                    <span className="font-medium">Address:</span> 123 Main St, Mumbai, Maharashtra.
+                    <span className="font-medium">Address:</span> 123 Main St,
+                    Mumbai, Maharashtra.
                   </p>
                   <p>
                     <span className="font-medium">Phone:</span> 91+ 989852508
                   </p>
                   <p>
-                    <span className="font-medium">Email:</span> rustloader@gmail.com
+                    <span className="font-medium">Email:</span>{" "}
+                    rustloader@gmail.com
                   </p>
                 </div>
               </div>
@@ -174,10 +144,10 @@ const Contact = () => {
             &copy; 2024 Construction Vehicles. All rights reserved.
           </p>
           <nav className="flex gap-4">
-            <Link to="#" className="text-sm hover:underline">
+            <Link href="#" className="text-sm hover:underline">
               Privacy Policy
             </Link>
-            <Link to="#" className="text-sm hover:underline">
+            <Link href="#" className="text-sm hover:underline">
               Terms of Service
             </Link>
           </nav>
@@ -185,7 +155,7 @@ const Contact = () => {
       </footer>
     </div>
   );
-};
+}
 
 function CheckIcon(props) {
   return (
@@ -206,4 +176,4 @@ function CheckIcon(props) {
   );
 }
 
-export default Contact;
+export default contact;
